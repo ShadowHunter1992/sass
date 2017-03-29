@@ -1,0 +1,98 @@
+/* Navigation Bar */
+
+@mixin navbar($width,$height,$color,$bgColor,$margin){
+    width: $width;
+    height: $height;
+    color: $color;
+    background-color: $bgColor;
+    margin: $margin;
+}
+#navbar{
+  ul{
+    li{
+      display: inline-block;
+      @include navbar(200px,40px,blue,orange,10px);
+      &:hover{
+        display: inline-block;
+        @include navbar(250px,50px,bisque,red,10px);
+      }
+    }
+  }
+}
+/* Unfortunate animation */
+// @mixin animate($animName,$animDurat,$animIterCo){
+//   animation-name: $animName;
+//   animation-duration:  $animDurat;
+//   animation-iteration-count: $animIterCo;
+//   $listColor: red blue green orange yellow;
+//   $listPerCent: 0 20 40 60 100;
+//   @each $color in $listColor
+//   @each $percent in $listPerCent
+//   @keyframes #{$animName}{
+//     #{$percent}%{
+//       background-color: #{$color};
+//     }
+//   }
+// }
+// #anim{
+//   @include animate(demo,10s,infinite);
+// }
+
+/* Basic animation */
+@mixin chcol($animeName,$animDurat,$animeIterCou) {
+
+    animation-name: $animeName;
+    animation-duration:  $animDurat;
+    animation-iteration-count: $animeIterCou;
+    @keyframes #{$animeName}{
+      0%{
+        background-color: red;
+      }
+      100%{
+        background-color: blue;
+      }
+    }
+}
+#anime{
+  @include chcol(color,5s,infinite);
+}
+
+
+
+/* Column System*/
+  @for $count from 1 through 12{
+  .col-#{$count}{
+    width: 100%/$count;
+    margin:0 auto;
+  }}
+
+/* preloader animation */
+@mixin preloader($animation,$animationDuration){
+animation-name: $animation;
+animation-duration: $animationDuration;
+@keyframes #{$animation}{
+  0%{
+    transform: rotate(0deg);
+  }
+  50%{
+    border-left-color: yellow;
+    border-right-color: green;
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+}
+}
+
+#preloader{
+  width: 100px;
+  height: 100px;
+  border:none;
+  border-left: 2px solid red;
+  border-right: 2px solid blue;
+  border-radius: 100%;
+}
+#preloader{
+  animation-iteration-count: infinite;
+  @include preloader(pre,5s);
+}

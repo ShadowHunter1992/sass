@@ -1,1 +1,1 @@
-Bu mixin bi harika dostum 
+Bu @mixin bi harika dostum 
